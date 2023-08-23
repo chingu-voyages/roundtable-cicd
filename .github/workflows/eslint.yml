@@ -1,0 +1,30 @@
+name: RoundtableWF
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16 # You can specify the Node.js version required for your project
+
+      - name: Install dependencies
+        run: npm install # or use yarn if your project uses Yarn
+
+      - name: Prettier
+        run: npm run format
+
+#      - name: Run ESLint
+#        run: npm run lint # Adjust this command according to how you run ESLint in your project
+
+      - name: eslint
+        uses: bradennapier/eslint-plus-action@v3.4.2
