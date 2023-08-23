@@ -1,6 +1,7 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
+// Test for the presence of the page title
 test('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
 
@@ -8,6 +9,7 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Playwright/);
 });
 
+// Test for the presence of the link
 test('get started link', async ({ page }) => {
   await page.goto('https://playwright.dev/');
 
