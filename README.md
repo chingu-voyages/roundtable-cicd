@@ -54,8 +54,8 @@ To start the app run this from you terminal session:
 npm run dev
 ```
 
-Before running it you'll first need to identify option values you'll using 
-in both the command line and the CLI `.env` file. 
+Before running it you'll first need to identify options to be added to the
+`.env` file. 
 
 | `.env` Parm    | Description                              |
 |----------------|------------------------------------------|
