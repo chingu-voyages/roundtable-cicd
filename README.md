@@ -16,7 +16,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-![Seshatbot Progress Bar](./docs/roundtable-cicd_progress_bar.png)
+![Landing Page](./docs/landing_page.png)
 
 ## roundtable-cicd
 
@@ -59,7 +59,7 @@ in both the command line and the CLI `.env` file.
 
 | `.env` Parm    | Description                              |
 |----------------|------------------------------------------|
-|                |  |
+|                | **Coming soon** |
  
 It's important to keep in mind that options you supply on the command line
 ALWAYS override the same option you specify in the `.env` file.
