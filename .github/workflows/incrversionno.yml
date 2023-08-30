@@ -2,8 +2,12 @@ name: IncrSemver
 
 on:
   pull_request:
+    types:
+      - closed
     branches:
       - main
+    branches-ignore:
+      - development
 jobs:
   build:
     if: ${{ github.event.pull_request.merged }}
