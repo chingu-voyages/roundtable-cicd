@@ -3,7 +3,7 @@ name: DeployPreview
 
 on:
   workflow_run:
-    workflows: ['ESLint', 'IntegrationTest']
+    workflows: ['IntegrationTest']
     types: 
       - completed
   pull_request:
