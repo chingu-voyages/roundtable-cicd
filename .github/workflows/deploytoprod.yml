@@ -1,14 +1,16 @@
 name: 'Netlify Deploy'
 
-on:
-  release:
-    types: ['published']
+on: 
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
 
 jobs:
   deploy:
-    name: 'Deploy'
+    if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
-
     steps:
       - run: echo 'Starting deployment to Production...'
       - uses: actions/checkout@v3
@@ -18,3 +20,4 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
           NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: "dist"
