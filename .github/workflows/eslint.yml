@@ -1,4 +1,4 @@
-name: RoundtableWF
+name: ESLint
 
 on:
   pull_request:
