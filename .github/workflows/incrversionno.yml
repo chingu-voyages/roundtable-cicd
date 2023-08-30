@@ -1,0 +1,17 @@
+name: 'Increment Version'
+# Based on https://github.com/marketplace/actions/netlify-deploy
+
+on:
+  release:
+    types: ['published']
+
+jobs:
+  incrsemver:
+    name: 'Semver'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name:  'Automated Version Bump'
+        uses:  ''
+        env:
+          PACKAGEJSON_DIR:  ''
