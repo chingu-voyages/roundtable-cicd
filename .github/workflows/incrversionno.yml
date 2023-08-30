@@ -1,17 +1,14 @@
-name: 'Increment Version'
-# Based on https://github.com/marketplace/actions/netlify-deploy
-
+name: IncrSemver
 on:
-  release:
-    types: ['published']
-
+  push:
+    branches:
+      - main
 jobs:
-  incrsemver:
-    name: 'Semver'
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name:  'Automated Version Bump'
-        uses:  ''
-        env:
-          PACKAGEJSON_DIR:  ''
+    - uses: actions/checkout@master
+    - name: Bump version and push tag
+      uses: darioblanco/bump-semver@v1.0.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
