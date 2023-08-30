@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     if: ${{ github.event.pull_request.merged }}
+    name: IncrSemver
     runs-on: ubuntu-latest
     steps:
       - run: echo 'Starting increment of semver...'
