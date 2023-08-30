@@ -1,5 +1,4 @@
 name: ESLint
-concurrency: singlethread
 
 on:
   pull_request:
