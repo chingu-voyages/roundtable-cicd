@@ -1,5 +1,6 @@
 name: DeployToProd
 # Based on https://github.com/marketplace/actions/netlify-deploy
+concurrency: singlethread
 
 on:
   release:

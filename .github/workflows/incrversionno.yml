@@ -1,4 +1,6 @@
 name: IncrSemver
+concurrency: singlethread
+
 on:
   push:
     branches:

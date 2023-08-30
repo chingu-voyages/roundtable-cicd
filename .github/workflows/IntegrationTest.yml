@@ -1,4 +1,6 @@
 name: IntegrationTest
+concurrency: singlethread
+
 on:
   workflow_run:
     workflows: ['ESLint']
