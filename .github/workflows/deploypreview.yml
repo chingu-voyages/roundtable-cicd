@@ -1,4 +1,5 @@
 name: 'Netlify Preview Deploy'
+# Based on https://github.com/marketplace/actions/netlify-deploy
 
 on:
   workflow_run:
