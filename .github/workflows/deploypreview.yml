@@ -1,4 +1,4 @@
-name: 'Netlify Preview Deploy'
+name: DeployPreview
 # Based on https://github.com/marketplace/actions/netlify-deploy
 
 on:

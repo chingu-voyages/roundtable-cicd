@@ -1,4 +1,4 @@
-name: 'Netlify Deploy'
+name: DeployToProd
 # Based on https://github.com/marketplace/actions/netlify-deploy
 
 on:
