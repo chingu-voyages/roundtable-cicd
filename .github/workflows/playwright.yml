@@ -1,6 +1,4 @@
 name: IntegrationTest
-concurrency: singlethread
-
 on:
   workflow_run:
     workflows: ['ESLint']
@@ -10,12 +8,11 @@ on:
     branches: [ main, development ]
   pull_request:
     branches: [ main, development ]
-
 jobs:
-  on-success:
-    runs-on: ubuntu-latest
+  test:
+    name: 'IntegrationTest'
     timeout-minutes: 60
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
     steps:
       - run: echo 'Starting integration tests...'
       - uses: actions/checkout@v3
@@ -34,9 +31,3 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-
-  on-failure:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    steps:
-      - run: echo 'The triggering workflow failed'

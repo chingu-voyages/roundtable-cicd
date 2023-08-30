@@ -1,6 +1,4 @@
-name: DeployToProd
-# Based on https://github.com/marketplace/actions/netlify-deploy
-concurrency: singlethread
+name: 'Netlify Deploy'
 
 on:
   release:
@@ -12,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - run: echo 'Starting deployment to Production...'
       - uses: actions/checkout@v3
       - uses: jsmrcaga/action-netlify-deploy@master
         with:

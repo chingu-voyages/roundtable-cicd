@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - run: echo 'Starting ESLint...'
+
       - name: Checkout code
         uses: actions/checkout@v2
 

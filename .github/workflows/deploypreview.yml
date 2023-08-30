@@ -1,30 +1,24 @@
 name: DeployPreview
 # Based on https://github.com/marketplace/actions/netlify-deploy
-concurrency: singlethread
 
 on:
   workflow_run:
-    workflows: ['IntegrationTest']
+    workflows: ['ESLint', 'IntegrationTest']
     types: 
       - completed
   pull_request:
     types: ['opened', 'edited', 'synchronize']
 
-jobs:    
-  on-success:
+jobs:
+  deploy:
+    name: 'DeployPreview'
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     steps:
-      - run: echo 'Starting build of deployment preview...'
+      - run: echo 'Starting preview deployment...'
       - uses: actions/checkout@v3
       - uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: "dist"
-
-  on-failure:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    steps:
-      - run: echo 'The triggering workflow failed'

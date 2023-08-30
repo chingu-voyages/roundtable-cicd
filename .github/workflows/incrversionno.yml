@@ -1,5 +1,4 @@
 name: IncrSemver
-concurrency: singlethread
 
 on:
   push:
@@ -9,8 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Bump version and push tag
-      uses: darioblanco/bump-semver@v1.0.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo 'Starting increment of semver...'
+      - uses: actions/checkout@master
+      - name: Bump version and push tag
+        uses: darioblanco/bump-semver@v1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
