@@ -1,12 +1,14 @@
 name: 'Netlify Preview Deploy'
 
 on:
+  workflow_run:
+    workflows: [ESLint, IntegrationTest]
   pull_request:
     types: ['opened', 'edited', 'synchronize']
 
 jobs:
   deploy:
-    name: 'Deploy'
+    name: 'DeployPreview'
     runs-on: ubuntu-latest
 
     steps:

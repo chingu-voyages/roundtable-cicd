@@ -1,11 +1,14 @@
 name: Playwright Tests
 on:
+  workflow_run:
+    workflows: [ESLint]
   push:
     branches: [ main, development ]
   pull_request:
     branches: [ main, development ]
 jobs:
   test:
+    name: 'IntegrationTest'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
