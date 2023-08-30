@@ -2,11 +2,16 @@ name: IncrSemver
 
 on:
   pull_request:
+    types:
+      - closed
     branches:
       - main
+    branches-ignore:
+      - development
 jobs:
   build:
     if: ${{ github.event.pull_request.merged }}
+    name: IncrSemver
     runs-on: ubuntu-latest
     steps:
       - run: echo 'Starting increment of semver...'
