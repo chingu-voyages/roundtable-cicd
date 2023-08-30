@@ -1,0 +1,24 @@
+name: DeployPreview
+# Based on https://github.com/marketplace/actions/netlify-deploy
+
+on:
+  workflow_run:
+    workflows: ['ESLint', 'IntegrationTest']
+    types: 
+      - completed
+  pull_request:
+    types: ['opened', 'edited', 'synchronize']
+
+jobs:
+  deploy:
+    name: 'DeployPreview'
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo 'Starting preview deployment...'
+      - uses: actions/checkout@v3
+      - uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          build_directory: "dist"

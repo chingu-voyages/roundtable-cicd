@@ -1,4 +1,4 @@
-name: RoundtableWF
+name: ESLint
 
 on:
   pull_request:
@@ -6,9 +6,12 @@ on:
 
 jobs:
   eslint:
+    name: 'ESLint'
     runs-on: ubuntu-latest
 
     steps:
+      - run: echo 'Starting ESLint...'
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -27,4 +30,4 @@ jobs:
 #        run: npm run lint # Adjust this command according to how you run ESLint in your project
 
       - name: eslint
-        uses: bradennapier/eslint-plus-action@v3.4.2
+        uses: Maggi64/eslint-plus-action@master
