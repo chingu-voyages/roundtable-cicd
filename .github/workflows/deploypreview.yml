@@ -9,15 +9,21 @@ on:
   pull_request:
     types: ['opened', 'edited', 'synchronize']
 
-jobs:
-  deploy:
-    name: 'DeployPreview'
+jobs:    
+  on-success:
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - run: echo 'Starting build of deployment preview...'
       - uses: actions/checkout@v3
       - uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: "dist"
+
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo 'The triggering workflow failed'
