@@ -1,4 +1,4 @@
-name: RoundtableWF
+name: ESLint
 
 on:
   pull_request:
@@ -6,9 +6,12 @@ on:
 
 jobs:
   eslint:
+    name: 'ESLint'
     runs-on: ubuntu-latest
 
     steps:
+      - run: echo 'Starting ESLint...'
+
       - name: Checkout code
         uses: actions/checkout@v2
 
