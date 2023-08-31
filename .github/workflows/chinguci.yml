@@ -50,4 +50,4 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: "dist"
       - name: Add preview deployment output as PR comment
-        run: echo $NETLIFY_OUTPUT >> "$GITHUB_STEP_SUMMARY"
+        run: echo "$NETLIFY_OUTPUT" >> "$GITHUB_STEP_SUMMARY"
