@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo 'Starting ESLint...'
-
+      # Setup & initialization
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -21,7 +20,6 @@ jobs:
           node-version: 16 # You can specify the Node.js version required for your project
 
       # Run Prettier & ESlint
-      - run: echo 'Starting Prettier & ESlint...'
       - name: Install dependencies
         run: npm install # or use yarn if your project uses Yarn
 
@@ -32,8 +30,6 @@ jobs:
         uses: Maggi64/eslint-plus-action@master
 
       # Run integration tests
-      - run: echo 'Starting integration tests...'
-
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
@@ -47,21 +43,17 @@ jobs:
       
       # Deploy a preview to Netlify
       # Based on https://github.com/marketplace/actions/netlify-deploy
-      - run: echo 'Starting preview deployment...'
-
       - uses: jsmrcaga/action-netlify-deploy@v2.0.0
         id: deploypreview
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: "dist"
-      - run: echo 'Preview deployment completed'
-      - run: echo '${{ steps.deploypreview.outputs }}'
 
       - name: Add preview deployment output as PR comment
         uses: NejcZdovc/comment-pr@v2
         with:
-          message: "Execution time: `${{steps.deploypreview.outputs}}`"
+          message: "Preview URL: `${{steps.deploypreview.outputs.NETLIFY_OUTPUT}}`"
           identifier: "deploypreview-results"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
