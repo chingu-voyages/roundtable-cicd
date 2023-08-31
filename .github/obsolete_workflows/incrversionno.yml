@@ -4,8 +4,9 @@ on:
   pull_request:
     types:
       - closed
-    branches-ignore:
+    branches: 
       - development
+      - '!main'
 jobs:
   build:
     if: ${{ github.event.pull_request.merged }}
