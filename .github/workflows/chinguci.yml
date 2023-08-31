@@ -57,6 +57,8 @@ jobs:
       - name: Comment PR with execution number
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: "${{ env.NETLIFY_OUTPUT }}"
+          message: |
+            "**__Netlify Preview Deployment Summary:__**"
+            "${{ env.NETLIFY_OUTPUT }}"
           comment_tag: execution
           reactions: eyes, rocket
