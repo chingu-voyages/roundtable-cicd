@@ -49,7 +49,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: "dist"
-      - run: previewresults=${{ steps.deploypreview.outputs.NETLIFY_OUTPUT}}
-
       - name: Add preview deployment output as PR comment
-        run: echo previewresults >> "$GITHUB_STEP_SUMMARY"
+        run: echo $NETLIFY_OUTPUT >> "$GITHUB_STEP_SUMMARY"
