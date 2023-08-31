@@ -58,7 +58,10 @@ jobs:
       - run: echo 'Preview deployment completed'
       - run: echo '${{ steps.deploypreview.outputs }}'
 
-      - uses: dannyskoog/pull-request-comment@v1
+      - name: Add preview deployment output as PR comment
+        uses: NejcZdovc/comment-pr@v2
         with:
-          message: '${{ steps.deploypreview.outputs }}'
-          marker: deploypreview-results
+          message: "Execution time: `${{steps.deploypreview.outputs}}`"
+          identifier: "deploypreview-results"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
