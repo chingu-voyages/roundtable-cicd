@@ -51,10 +51,4 @@ jobs:
           build_directory: "dist"
 
       - name: Add preview deployment output as PR comment
-        uses: NejcZdovc/comment-pr@v2
-        with:
-          message: 'Netlify Preview Results: ${{ steps.deploypreview.outputs.NETLIFY_OUTPUT }}'
-          identifier: deploypreview-results
-          single_comment: 'true'
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: echo steps.deploypreview.outputs.NETLIFY_OUTPUT >> $GITHUB_STEP_SUMMARY
