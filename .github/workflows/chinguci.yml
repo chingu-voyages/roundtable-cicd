@@ -57,3 +57,8 @@ jobs:
           build_directory: "dist"
       - run: echo 'Preview deployment completed'
       - run: echo '${{ steps.deploypreview.outputs }}'
+
+      - uses: dannyskoog/pull-request-comment@v1
+        with:
+          message: ${{ steps.deploypreview.outputs }}
+          marker: deploypreview-results
