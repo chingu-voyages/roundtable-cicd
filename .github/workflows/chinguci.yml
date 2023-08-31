@@ -50,9 +50,10 @@ jobs:
       - run: echo 'Starting preview deployment...'
 
       - uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        id: deploypreview
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: "dist"
       - run: echo 'Preview deployment completed'
-      - run: echo ''...URL - $NETLIFY_PREVIEW_URL'
+      - run: echo ''...URL - ${{ steps.deploypreview.outputs.NETLIFY_PREVIEW_URL }}'
