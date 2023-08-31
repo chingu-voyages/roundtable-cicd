@@ -60,5 +60,5 @@ jobs:
 
       - uses: dannyskoog/pull-request-comment@v1
         with:
-          message: ${{ steps.deploypreview.outputs }}
+          message: '${{ steps.deploypreview.outputs }}'
           marker: deploypreview-results
