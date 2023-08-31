@@ -3,6 +3,8 @@ name: ChinguCI
 on:
   pull_request:
     types: [opened, synchronize]
+    branches-ignore:
+      - main
 
 jobs:
   eslint:
@@ -49,7 +51,12 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: "dist"
-      - name: Add preview deployment output as PR comment
-        run: echo $NETLIFY_OUTPUT
-
-      - run: echo "$NETLIFY_OUTPUT" >> "$GITHUB_STEP_SUMMARY"
+     
+      # Add the Netlify deployment info as a PR comment
+      # Base on https://github.com/marketplace/actions/comment-pull-request
+      - name: Comment PR with execution number
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: "${{ env.NETLIFY_OUTPUT }}"
+          comment_tag: execution
+          reactions: eyes, rocket
