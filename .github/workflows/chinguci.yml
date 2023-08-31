@@ -53,7 +53,7 @@ jobs:
       - name: Add preview deployment output as PR comment
         uses: NejcZdovc/comment-pr@v2
         with:
-          message: "Preview URL: `${{steps.deploypreview.outputs.NETLIFY_OUTPUT}}`"
+          message: "Netlify Preview URL: `${{ steps.deploypreview.outputs.NETLIFY_PREVIEW_URL }}`"
           identifier: "deploypreview-results"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
