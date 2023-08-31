@@ -51,4 +51,5 @@ jobs:
           build_directory: "dist"
       - name: Add preview deployment output as PR comment
         run: echo $NETLIFY_OUTPUT
-        run: echo "$NETLIFY_OUTPUT" >> "$GITHUB_STEP_SUMMARY"
+
+      - run: echo "$NETLIFY_OUTPUT" >> "$GITHUB_STEP_SUMMARY"
