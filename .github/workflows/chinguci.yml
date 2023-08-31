@@ -1,0 +1,55 @@
+name: ChinguCI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  eslint:
+    name: chinguci
+    runs-on: ubuntu-latest
+
+    steps:
+      # Setup & initialization
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16 # You can specify the Node.js version required for your project
+
+      # Run Prettier & ESlint
+      - name: Install dependencies
+        run: npm install # or use yarn if your project uses Yarn
+
+      - name: Prettier
+        run: npm run format
+
+      - name: eslint
+        uses: Maggi64/eslint-plus-action@master
+
+      # Run integration tests
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+      
+      # Deploy a preview to Netlify
+      # Based on https://github.com/marketplace/actions/netlify-deploy
+      - uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        id: deploypreview
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          build_directory: "dist"
+      - name: Add preview deployment output as PR comment
+        run: echo $NETLIFY_OUTPUT
+
+      - run: echo "$NETLIFY_OUTPUT" >> "$GITHUB_STEP_SUMMARY"
