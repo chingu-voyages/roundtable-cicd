@@ -55,5 +55,6 @@ jobs:
         with:
           message: 'Netlify Preview Results: ${{ steps.deploypreview.outputs.NETLIFY_OUTPUT }}'
           identifier: deploypreview-results
+          single_comment: 'true'
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
