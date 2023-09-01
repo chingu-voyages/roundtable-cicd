@@ -1,14 +1,15 @@
-name: ChinguCI
+name: ChinguCD
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-    branches-ignore:
+  # Trigger this workflow when a updates to main are merged from a PR or
+  # made directly via a push
+  push:
+    branches:
       - main
 
 jobs:
   eslint:
-    name: chinguci
+    name: chingucd
     runs-on: ubuntu-latest
 
     steps:
@@ -20,16 +21,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16 # You can specify the Node.js version required for your project
-
-      # Run Prettier & ESlint
-      - name: Install dependencies
-        run: npm install # or use yarn if your project uses Yarn
-
-      - name: Prettier
-        run: npm run format
-
-      - name: eslint
-        uses: Maggi64/eslint-plus-action@master
 
       # Run integration tests
       - name: Install Playwright Browsers
@@ -51,6 +42,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: "dist"
+          NETLIFY_DEPLOY_TO_PROD: true
      
       # Add the Netlify deployment info as a PR comment
       # Base on https://github.com/marketplace/actions/comment-pull-request
