@@ -21,10 +21,10 @@ jobs:
         with:
           node-version: 16 # You can specify the Node.js version required for your project
 
-      # Run Prettier & ESlint
       - name: Install dependencies
-        run: npm install # or use yarn if your project uses Yarn
+        run: npm install
 
+      # Run Prettier & ESlint
       - name: Prettier
         run: npm run format
 
