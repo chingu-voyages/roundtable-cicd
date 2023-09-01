@@ -47,13 +47,9 @@ jobs:
           build_directory: "dist"
           NETLIFY_DEPLOY_TO_PROD: true
      
-      # Add the Netlify deployment info as a PR comment
+      # Add the Netlify deployment info
       # Base on https://github.com/marketplace/actions/comment-pull-request
       - name: Comment PR with execution number
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            **__Netlify Preview Deployment Summary:__**
-            ${{ env.NETLIFY_OUTPUT }}
-          comment_tag: execution
-          reactions: eyes, rocket
+        run: |
+          echo **__Netlify Preview Deployment Summary:__**
+          echo ${{ env.NETLIFY_OUTPUT }}
