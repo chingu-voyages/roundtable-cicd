@@ -52,4 +52,5 @@ jobs:
       - name: Comment PR with Netlify deployment info
         run: |
           echo "**__Netlify Preview Deployment Summary:__**"
-          echo "${{ env.NETLIFY_OUTPUT }}"
+          echo ${{ env.NETLIFY_OUTPUT }}
+          EOF
