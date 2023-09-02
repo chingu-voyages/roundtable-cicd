@@ -50,5 +50,4 @@ jobs:
       # Add the Netlify deployment info
       - name: Comment PR with Netlify deployment info
         run: |
-          echo **__Netlify Preview Deployment Summary:__**
           echo $(echo ${{ env.NETLIFY_OUTPUT }} | tr -d '"')
