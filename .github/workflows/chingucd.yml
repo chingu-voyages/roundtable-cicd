@@ -48,8 +48,6 @@ jobs:
           NETLIFY_DEPLOY_TO_PROD: true
      
       # Add the Netlify deployment info
-      # Base on https://github.com/marketplace/actions/comment-pull-request
       - name: Comment PR with Netlify deployment info
         run: |
-          echo **__Netlify Preview Deployment Summary:__**
-          echo ${{ env.NETLIFY_OUTPUT }}
+          echo $(echo ${{ env.NETLIFY_OUTPUT }} | tr -d '"')
