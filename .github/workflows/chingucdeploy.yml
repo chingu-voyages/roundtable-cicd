@@ -48,6 +48,6 @@ jobs:
           NETLIFY_DEPLOY_TO_PROD: true
      
       # Add the Netlify deployment info
-      - name: Comment PR with Netlify deployment info
+      - name: Add Netlify deployment info
         run: |
           echo "${{ env.NETLIFY_OUTPUT }}"
